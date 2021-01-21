@@ -18,7 +18,7 @@ pre的下一個節點會給比較過後較小的節點
 而prev也繼續往下，準備接下一個，直到其中一邊的節點完全用完，就可以直接將最後的都接到pre.next
 
 dum = ListNode(None) #製造空節點
-pre = dum
+pre = dum     #在建立一個節點時，需要傳入一個data的值，並且指標預設是指向None的。
 while l1 and l2 :
   if l1.val <= l2.val:
           prev.next = l1
@@ -34,3 +34,21 @@ while l1 and l2 :
       prev.next = l1
 
   return dum.next
+  __________________________________________________
+  
+  linked-list（1->2->3變成3->2->1）
+  練習的第一題是反轉一個linked-list（1->2->3變成3->2->1），主要是在反轉一個節點的指標時
+  必須要記住三個節點（以程式碼為例就是prev, current, head），才不會在改變指標後無法跳到本來的下一個節點，算是滿好理解的概念，寫出來的時間複雜度是O(n)。
+  
+  def reverseList(self, head):
+    prev = None
+        
+    while head:
+        current = head
+        head = head.next
+        current.next = prev
+        prev = current
+        
+    return prev
+  
+  
