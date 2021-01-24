@@ -1,0 +1,27 @@
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        '''
+        先處理當x小於零或者尾數等於0的時候，給予false
+        最後用while處理x的轉換問題
+          先設定Y以及暫存的temp
+          當x 大於y的時候，一步步將X的餘數取出，指定在Y身上，再乘以十。
+          最後當x 和y相等時，答案就出來了
+        '''
+        y = 0 
+        temp = x 
+        if x < 0 :
+            return False
+        elif (x != 0 and x % 10 == 0):
+            return False
+        else:
+            while x > y :
+                y = y*10 + temp%10
+                #取出尾數(再乘以10)
+                print(y)
+                temp = temp//10
+                print(temp)
+                #x 尾數被去除
+            if x == y :
+                return True
+            
+            
