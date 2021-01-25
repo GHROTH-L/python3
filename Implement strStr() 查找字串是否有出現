@@ -1,0 +1,35 @@
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        '''
+        先抓這個字有沒有出現在haystack 裡面 沒有就回復-1
+        再來使用index的位置來抓出字
+        '''
+        
+        if needle:
+            if needle not in haystack:
+                return -1
+            else:
+                for i in range(len(haystack)):
+                    if haystack[i: i+len(needle)] == needle:
+                    #在i~i+len(needle)的長度中字==needle的字則 return
+                        return i
+        else:
+            return 0
+            
+    ________________________
+    附註：
+string = "python"
+print(string[:3])
+# 輸出為 pyt
+
+print(string[3:])
+# 輸出為 hon
+
+print(string[:])
+# 輸出為 python
+
+print(string[0:5:2])
+# 輸出為 pto  0-5 間隔2
+
+print(string[3:5])
+# 輸出為 ho
