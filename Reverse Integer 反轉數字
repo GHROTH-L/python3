@@ -1,0 +1,20 @@
+class Solution:
+'''
+題目除了樣將123 轉為321 、-123 轉成-321 、還有限制   在32位元的機器上，整數的位數為32位，取值的範圍為 -2**31 ~ 2**31-1 即 -2147483648 ~ 2147483648
+想法：先試著取出絕對值，然後用str的方式做反轉，之後再指定為str
+然後上下限也都顯示出來 再用if
+'''
+    def reverse(self, x: int) -> int:
+        xstr = str(abs(x))     #  a = abs(x)  #返回絕對值
+        y = int(xstr[::-1])
+        b = 2 ** 31
+        neg_b = -1 * b 
+        if y > b or y < neg_b:
+            return 0
+        else:
+            if x == 0: 
+                return 0
+            elif x < 0:
+                return -y
+            elif x > 0:
+                return y 
