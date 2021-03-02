@@ -1,0 +1,23 @@
+class Solution:
+    def minCost(self, n: int, cuts: List[int]) -> int:
+        '''
+    後來反過來思考，若我不是切割筷子，而是假設筷子已經被切割完，要merge成完整一枝，就變的很像Matrix chain multiplication。
+    假設orders有k-1個值，則筷子將被切割為k個段落。由於一次只能merge兩個段落，任選一個區間(i, j)，merge成這個區間的最小成本為
+        
+        k代表"包含頭尾"的所有cut
+        ex: |----|---|-|-----|, k=5
+        
+        i+d為i後第d個cut位置
+        每個m是在i及i+d中間切一刀
+        
+        '''
+        presum = sorted(cuts + [0, n]) #加入0與n 可以當作切點與數值計算
+        k = len(presum) #list 的長度
+        dp = [[0] * k for i in range(k)] #創造有k 個零的二維array(矩陣)
+        for d in range(2, k):     #2~k-1的長度(0,i,k都不能選)
+            for i in range(0, k - d):
+                tmp = float('inf')      #Python中可以用float("inf"), float("-inf")表示正負無窮
+                for m in range(i + 1, i + d):  #m為 i 與 i+d 其中的一個點
+                    tmp = min(tmp, dp[i][m] + dp[m][i + d])    #取無限到 兩段相加之後的最小值
+                dp[i][i + d] = tmp + presum[i + d] - presum[i]
+        return dp[0][k - 1]
