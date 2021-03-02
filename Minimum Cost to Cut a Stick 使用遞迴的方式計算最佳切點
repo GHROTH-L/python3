@@ -1,3 +1,10 @@
+'''
+原本打算先將0-n的list 列出來
+再將切點標示進去
+但會遇到怎樣的切點是最好的問題，所以只好想說是將兩個切點兩兩結合的計算方式
+'''
+
+
 class Solution:
     def minCost(self, n: int, cuts: List[int]) -> int:
         '''
