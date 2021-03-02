@@ -1,0 +1,34 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         [4,2,8]
+#         self.val = val
+#         self.next = next
+#       ListNode{val: 2, next: ListNode{val: 8, next: None}}
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#        [1,4,4,null,2,2,null,1,null,6,8,null,null,null,null,1,3]
+#         self.val = val  可以抓到自己這個節點的value
+#         self.left = left 抓到這個節點，左邊的部分 
+#        TreeNode{val: 4, left: None, right: TreeNode{val: 2, left: TreeNode{val: 1, left: None, right: None}, right: None}}
+#         self.right = right 抓到這個節點，右邊的部分
+class Solution:
+    def isSubPath(self, head: ListNode, root: TreeNode) -> bool:
+    #做一個看過所有節點的函數 
+        #這裡是節點與list的對應
+        def dfs(root,head):
+            #空路徑一直都會是一個節點
+            if head == None:
+                return True
+            #當樹已經是空，但是head不是空
+            if root == None:
+                return False
+            #針對value 與root的value是否一樣
+            if head.val != root.val:
+                return False
+            return dfs(root.left, head.next) or dfs(root.right, head.next)
+        
+        if not root:
+            return False
+        return dfs(root, head) or self.isSubPath(head, root.left) or self.isSubPath(head, root.right)
