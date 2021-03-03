@@ -1,0 +1,17 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        f = ""
+        f2 = "" #暫時存放先前的結果
+        for i in range(len(s)):
+            if s[i] not in f:
+                f = f + s[i]
+            else: 
+                if len(f) >= len(f2):
+                    f2 = f
+                a = f.index(s[i]) #取出重複字在f的哪裡(index)
+                f = f[a+1:]+s[i]
+        
+        if len(f)>len(f2):
+            return len(f)
+        else:
+            return len(f2)
