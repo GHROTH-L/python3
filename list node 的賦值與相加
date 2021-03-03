@@ -1,0 +1,27 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        #先創造result的節點
+        temp = ListNode(0)
+        head = temp
+        #s是l1 l2的和數，如果2+3 那麼temp 就儲存5
+        s = 0
+        while l1!=None or l2!=None or s!=0: #要多一個s!=0 是因為如果進位超出原來的list長度時，要再增加
+            #只要l1 l2或者sum 有數值就相加，如果l1 l2有none 就代表到了盡頭
+            if l1 != None:
+                s = l1.val +s
+                l1 = l1.next
+            if l2 != None:
+                s = l2.val +s
+                l2 = l2.next
+            
+            a = s% 10  #取s的餘數
+            s = s//10  #如果有進位
+            temp.next = ListNode(a)  #在這個節點給予數值
+            temp = temp.next         #跳到下一個節點
+        return head.next
+            
