@@ -1,0 +1,18 @@
+'''
+羅馬字母轉換成數字
+例如 DCL -- >650
+先建立字典後，在字串轉成數字
+'''
+
+
+class Solution:       
+    def romanToInt(self, s: str) -> int:
+        count = 0
+        dic = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        for i in range(len(s)):
+            if dic[s[i]] :
+                temp = dic[s[i]] #取得當前數值
+                if (i != 0 and dic[s[i]] > dic[s[i-1]]): #如果不是第一個數值，且當前數值小於第一個
+                    temp = temp - (dic[s[i-1]])*2    #就要在temp 這邊減去兩次，因為等下會在一次將temp這邊加入
+            count = count + temp
+        return count     
