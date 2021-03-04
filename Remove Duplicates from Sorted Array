@@ -14,3 +14,19 @@ class Solution:
       '''
       缺點：花太久時間
       '''
+//////////////////////////////////////////////改進方法
+
+class Solution:
+     def removeDuplicates(self, nums: List[int]) -> int:
+        """
+        '''
+        使用 set list的唯一性，抓取單出現的，然後再轉乘list
+        轉換完成後，在排序(因為後面會出現input是負號的
+        '''
+        :type nums :list[int]
+        :rtype :int
+        要將重複的數字刪除 output有出現的
+        """
+            nums[:] = list(set(nums))
+            nums.sort()
+            return len(nums)
