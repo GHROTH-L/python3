@@ -1,0 +1,38 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        '''
+        ([])可以
+        ([)]{} 不行 -->所以單純的排index 順序不行
+        ([{  的順序 與後面的}]) 大小順序要顛倒過來 > stack >先進後出的想法(用pop取出作後一位
+        /////
+        原本想說用顛倒的方式，怎麼放進去，跟顛倒過來拿出來並且用dic翻譯後應該要一樣
+        但是會無法解讀"()[]"這樣的(因為轉過來是"[]()")
+        代碼如下:
+        stack =s[::-1]   #顛倒
+        count = 0
+        dic = {"(":")",
+               "[":"]",
+               "{":"}",
+               ")":"(",
+               "]":"[",
+               "}":"{" } 
+        for i in range(len(s)):
+            if dic[s[i]] == stack[i]:
+                print(dic[s[i]])
+                print(stack[i])
+                count = 1+count  一樣就+1
+        if count == len(s):  字串長度與數的一樣，就代表 完全一樣
+            return True
+        
+        '''
+        stack = []
+        dic = {"(":")","[":"]","{":"}",")":"(","]":"[","}":"{" } 
+        t = set(["(", "[", "{"])  #製造一個只有左括號的list set list 是不可重複的list
+        for i in s:
+            if i in t:
+                stack.append(i)   #如果有一樣的左括號，就按照順序填入空list>就會得到一個有順序的右括號
+            elif stack and i == dic[stack[-1]]:  #如果stack 與i 相等於 轉譯最新的stack 
+                stack.pop()                    #stack 刪除
+            else:
+                return False
+        return stack == []
