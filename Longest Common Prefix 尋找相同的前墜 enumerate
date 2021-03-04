@@ -1,0 +1,17 @@
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        '''
+        這裡需要找的共同前墜(prefix string) 所以先從最小的單字開始往後找就好
+        第再來也因為已經按照單字大小安排，所以只要比對最前面以及最後面的單字樣式
+        用enmerate給予每個字母index 如果index一樣，就代表前墜的單字順序是一樣的
+        如果不一樣，就往後回傳前一個前墜
+        
+        '''
+        if not strs: return "" #字串只會由a到z所構成，若沒有的話則回傳空字串
+        strs = sorted(strs) #先將字串依照字母大小排序
+        
+        #enumerate 多用於在for循環中得到計數，利用它可以同時獲得索引和值，即需要index和value值的時候可以使用enumerate
+        for i, value in enumerate(strs[0]):                 
+            if value != strs[-1][i]:
+                return strs[0][:i]
+        return strs[0]    
