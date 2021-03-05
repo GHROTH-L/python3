@@ -1,0 +1,12 @@
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+    '''
+    將兩個list相結合，然後sorted，之後以是否有餘數判斷是奇數還是偶數。
+    如果是奇數就要兩個數字整除，不是就抓中間的數就好
+    '''
+        k =sorted(nums1+(nums2))
+        z = len(k)
+        if z%2 ==0:
+            return (k[(z//2) ]+k[(z//2)-1])/2    #這裡要注意因為是用index算，所以是從零開始計算，不是單純輸出就好
+        else:
+            return k[(z//2)]
